@@ -3,11 +3,6 @@
     text-align: center;
 }
 
-.col {
-    display: flex;
-    flex-direction: column;
-}
-
 .clock {
     justify-content: center;
     align-items: center;

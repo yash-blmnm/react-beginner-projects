@@ -1,0 +1,14 @@
+.meridiam {
+    margin: 50px 20px 30px;
+    font-size: 24px;
+    font-family: sans-serif;
+    color: #beb9b9;
+}
+
+.meridiam.active {
+    color: #000;
+}
+
+.hidden {
+    visibility: hidden;
+}
