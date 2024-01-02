@@ -1,6 +1,7 @@
 import "./index.css";
 
 type indexProps = {
+  hideComponent: boolean
   meridiamValue?: string
 }
 
@@ -9,9 +10,9 @@ export enum MeridiamValues {
   pm = 'pm'
 }
 
-const MeridiamSwitch:React.FC<indexProps> = ({meridiamValue}) => {
+const MeridiamSwitch:React.FC<indexProps> = ({ hideComponent, meridiamValue }) => {
   return (
-    <div className={`${meridiamValue ? 'flex-col' : 'hidden'}`}>
+    <div className={`${ hideComponent ? 'hidden' : 'flex-col' }`}>
       {[MeridiamValues.am, MeridiamValues.pm].map(value => <div className={`meridiam ${value === meridiamValue ? 'active' : ''}`}>{value.toUpperCase()}</div>)}
     </div>
   );

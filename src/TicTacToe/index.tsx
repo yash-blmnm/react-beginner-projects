@@ -43,6 +43,11 @@ function TicTacToe() {
 
   return (
     <>
+    <header>
+        <div>
+            
+        </div>
+    </header>
       <h4>Player : {player} </h4>
       <Game 
         symbol={symbol}

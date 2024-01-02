@@ -25,7 +25,6 @@ const index:React.FC<indexProps> = ({symbol, gameStatus, changePlayer, updateGam
 
     useEffect(() => {
         if(gameStatus === Status.start) {
-            console.log('new game matrix', MATRIX)
             setGameMatrix(MATRIX);
             setNumOfMoves(0);
             updateGameStatus(Status.play);
