@@ -8,6 +8,7 @@ import TicTacToe from './TicTacToe';
 import DigitalClock from './DigitalClock';
 import App from './App';
 import './index.css'
+import MyCalender from './MyCalender';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
     path: "/digitalclock",
     element: <DigitalClock />,
   },
+  {
+    path: '/mycalender',
+    element: <MyCalender />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -9,6 +9,10 @@ const PROJECTS = [
   {
     name: 'Digital Clock',
     link: '/digitalclock'
+  },
+  {
+    name: 'My Calender',
+    link: '/mycalender'
   }
 ]
 

@@ -76,6 +76,7 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
 }
+
 .items-center {
   align-items: center;
 }
@@ -83,3 +84,26 @@ button:focus-visible {
 .content-center {
   justify-content: center;
 }
+.width-full {
+  width: 100%;
+}
+
+.height-full {
+  height: 100%;
+}
+
+.content-between {
+  justify-content: space-between;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.font-style-sans {
+  font-family: sans-serif;
+}
+
+
+/* justify-content: space-between;
+align-items: center; */
