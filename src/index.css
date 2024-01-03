@@ -81,6 +81,9 @@ button:focus-visible {
   align-items: center;
 }
 
+.self-end {
+  align-self: flex-end;
+}
 .content-center {
   justify-content: center;
 }
@@ -100,9 +103,17 @@ button:focus-visible {
   padding: 0;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
 .font-style-sans {
   font-family: sans-serif;
 }
+
 
 
 /* justify-content: space-between;

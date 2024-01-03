@@ -1,11 +1,19 @@
+.calender {
+    padding: 1% 2%;
+    background-color: #000;
+    color: #fff;
+}
 .day-list-heading {
     text-align: right;
     padding-right: 5%;
 }
 
+.day-list-heading.sunday {
+    color: #b8b6b6;
+}
 table.month-table,
 table.month-table td {
-    border: 1px solid black;
+    border: 1px solid #dadada;
     border-collapse: collapse;
 }
 
@@ -19,9 +27,17 @@ table.month-table td {
 }
 
 .day-list-item {
-    text-align: right;
-    margin-right: 5%;
-    margin-top: 5%;
+    color: #5a5a5a;
+    }
+    
+    .day-list-item.active {
+        background: #000;
+        color: #fff;
+        opacity: 0.8;
+    }
+    
+    .day-list-item.sunday {
+        background-color: #292828;
 }
 
 .date-component {
@@ -41,5 +57,4 @@ table.month-table td {
     font-size: 16px;
     font-weight: 500;
     border-radius: 6px;
-
 }

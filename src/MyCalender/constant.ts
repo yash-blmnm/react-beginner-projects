@@ -1,7 +1,9 @@
+type daysInMonth = 31 | 30 | 29 | 28;
+
 type EachMonthMap = {
     name: string
-    daysPerMonth: 31 | 30 | 28
-    leapYearDaysPerMonth?: 29
+    daysPerMonth: daysInMonth;
+    leapYearDaysPerMonth?: daysInMonth;
 }
 
 const MONTH_MAP:EachMonthMap[] = [
