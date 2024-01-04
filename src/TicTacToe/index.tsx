@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 import Game from './Game'
+import Header from '../components/Header';
 
 const PLAYER_1 = 'Player1';
 const PLAYER_2 = 'Player2';
@@ -43,20 +44,18 @@ function TicTacToe() {
 
   return (
     <>
-    <header>
-        <div>
-            
-        </div>
-    </header>
-      <h4>Player : {player} </h4>
-      <Game 
-        symbol={symbol}
-        gameStatus={gameStatus}
-        changePlayer={() => setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1)}
-        updateGameStatus={(status: Status) => setGameStatus(status)}
-      />
-      {statusDescription}
-      {gameStatus === Status.none ? <></> : ''}
+      <Header projectName={"Tic Tac Toe"} />
+      <section className="main-section">
+        <h4>Player : {player} </h4>
+        <Game 
+          symbol={symbol}
+          gameStatus={gameStatus}
+          changePlayer={() => setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1)}
+          updateGameStatus={(status: Status) => setGameStatus(status)}
+        />
+        {statusDescription}
+        {gameStatus === Status.none ? <></> : ''}
+      </section>
     </>
   )
 }

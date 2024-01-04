@@ -3,6 +3,7 @@ import "./index.css";
 import TimeFormatToggle, { TimeFormat } from "./TimeFormatToggle";
 import MeridiamSwitch, { MeridiamValues } from "./MeridiamSwitch";
 import TimeComponent from "./TimeComponent";
+import Header from "../components/Header";
 
 export default function DigitalClock() {
 
@@ -13,15 +14,20 @@ export default function DigitalClock() {
   const [currentDate, setCurrentDate] = useState<string>();
 
   return (
-    <div className="flex-col clock">
-      <TimeFormatToggle  timeFormat={timeFormat} changeFormat={setTimeFormat} />
-      <div className="flex-row ">
-        <TimeComponent timeFormat={timeFormat} currentDate={currentDate} changeMeridiam={setMeridiam} changeDate={setCurrentDate}/>
-        <MeridiamSwitch hideComponent={timeFormat === TimeFormat.twentyFour} meridiamValue={meridiam}/>
+    <>
+    <Header projectName={"Digital Clock"} />
+    <section className="main-section">
+      <div className="flex-col clock">
+        <TimeFormatToggle  timeFormat={timeFormat} changeFormat={setTimeFormat} />
+        <div className="flex-row ">
+          <TimeComponent timeFormat={timeFormat} currentDate={currentDate} changeMeridiam={setMeridiam} changeDate={setCurrentDate}/>
+          <MeridiamSwitch hideComponent={timeFormat === TimeFormat.twentyFour} meridiamValue={meridiam}/>
+        </div>
+        <div className="flex-row">
+          <h4>{currentDate}</h4>
+        </div>
       </div>
-      <div className="flex-row">
-        <h4>{currentDate}</h4>
-      </div>
-    </div>
+    </section>
+    </>
   );
 }

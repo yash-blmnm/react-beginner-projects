@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { DAYS_MAP, MONTH_MAP } from './constant';
 import './index.css'
+import Header from '../components/Header';
 
 type indexProps = {
 };
@@ -134,46 +135,51 @@ const MyCalender:React.FC<indexProps> = () => {
         console.log(event)
     }
 
-    return <div className='flex-col font-style-sans calender'>
-        <div className='flex-row content-between items-center'>
-            <h2>
-                <strong>{`${MONTH_MAP[currentMonth - 1].name} ${currentYear}`}</strong>
-            </h2>
-            <div className='flex-row'>
-                <button className='month-shift-btn' onClick={() => updateCurrentMonth(ChangeMonthProperty.previous)}>{"<"}</button>
-                <button className='month-shift-btn' onClick={() => updateCurrentMonth(ChangeMonthProperty.today)}>{"Today"}</button>
-                <button className='month-shift-btn' onClick={() => updateCurrentMonth(ChangeMonthProperty.nextMonth)}>{">"}</button>
+    return <>
+    <Header projectName={"My Calender"} />
+    <section className="main-section">
+        <div className='flex-col font-style-sans calender'>
+            <div className='flex-row content-between items-center'>
+                <h2>
+                    <strong>{`${MONTH_MAP[currentMonth - 1].name} ${currentYear}`}</strong>
+                </h2>
+                <div className='flex-row'>
+                    <button className='month-shift-btn' onClick={() => updateCurrentMonth(ChangeMonthProperty.previous)}>{"<"}</button>
+                    <button className='month-shift-btn' onClick={() => updateCurrentMonth(ChangeMonthProperty.today)}>{"Today"}</button>
+                    <button className='month-shift-btn' onClick={() => updateCurrentMonth(ChangeMonthProperty.nextMonth)}>{">"}</button>
+                </div>
             </div>
-        </div>
 
-        <table className='month-table' onScroll={onScrollCalender}>
-            <tr>
-                {DAYS_MAP.map(day => (
-                <th className=''>
-                    <h4 className={`day-list-heading ${day === DAYS_MAP[0] ? 'sunday' : ''}`}>
-                        {`${day.charAt(0).toUpperCase()}${day.substring(1,3)}`}
-                    </h4>
-                </th>
-                ))}
-            </tr>
-            {calenderPrams?.array?.map((row:Date[], rindex:number) => (
-                <tr key={rindex}>{row?.map((cell:Date, cindex:number) =>{
-                    return(
-                    <td key={cindex}>
-                        <div className={
-                            `flex-col height-full day-list-item ${cell.getMonth() === (currentMonth -1) ? 'active' : ''} ${cell.getDay() === 0 ? 'sunday' : ''}`
-                        }>
-                            <span className='self-end p-2'>
-                                <span className={`date-component ${cell.toDateString() === currentDate.toDateString() ? 'active' : ''}`}>
-                                    {cell.getDate()}
+            <table className='month-table' onScroll={onScrollCalender}>
+                <tr>
+                    {DAYS_MAP.map(day => (
+                    <th className=''>
+                        <h4 className={`day-list-heading ${day === DAYS_MAP[0] ? 'sunday' : ''}`}>
+                            {`${day.charAt(0).toUpperCase()}${day.substring(1,3)}`}
+                        </h4>
+                    </th>
+                    ))}
+                </tr>
+                {calenderPrams?.array?.map((row:Date[], rindex:number) => (
+                    <tr key={rindex}>{row?.map((cell:Date, cindex:number) =>{
+                        return(
+                        <td key={cindex}>
+                            <div className={
+                                `flex-col height-full day-list-item ${cell.getMonth() === (currentMonth -1) ? 'active' : ''} ${cell.getDay() === 0 ? 'sunday' : ''}`
+                            }>
+                                <span className='self-end p-2'>
+                                    <span className={`date-component ${cell.toDateString() === currentDate.toDateString() ? 'active' : ''}`}>
+                                        {cell.getDate()}
+                                    </span>
                                 </span>
-                            </span>
-                            <span>{cell.toDateString()}</span>
-                        </div>
-                    </td>
-                )})}</tr>
-            ))}
-        </table>
-    </div>
+                                <span>{cell.toDateString()}</span>
+                            </div>
+                        </td>
+                    )})}</tr>
+                ))}
+            </table>
+        </div>
+    </section>
+    </>
 }
 export default MyCalender;
