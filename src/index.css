@@ -77,6 +77,9 @@ button:focus-visible {
   flex-direction: column;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
 .items-center {
   align-items: center;
 }
@@ -114,7 +117,6 @@ button:focus-visible {
   font-family: sans-serif;
 }
 
-
-
-/* justify-content: space-between;
-align-items: center; */
+.text-justify {
+  text-align: justify;
+}

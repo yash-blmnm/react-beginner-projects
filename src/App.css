@@ -43,6 +43,15 @@
 
 .projects-list-item {
   list-style: none;
+  padding: 1rem;
+    width: 20%;
+    min-height: 150px;
+    border: 1px solid #dadada;
+    border-radius: 8px;
+}
+.projects-list-item a {
+  text-decoration: none;
+  color: #000;
 }
 .list-style-none {
   list-style: none;

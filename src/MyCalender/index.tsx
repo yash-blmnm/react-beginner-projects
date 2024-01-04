@@ -31,6 +31,25 @@ const MyCalender:React.FC<indexProps> = () => {
     const [calenderPrams, setCalenderPrams] = useState<calenderPramsType>({})
 
     useEffect(() => {
+        let daysInCurrentMonth = MONTH_MAP[currentMonth - 1].daysPerMonth;
+        if((currentYear % 4 === 0) && currentMonth === LEAP_YEAR_MONTH) {
+            daysInCurrentMonth = MONTH_MAP[currentMonth - 1]?.leapYearDaysPerMonth || daysInCurrentMonth;
+        }
+        let date = currentDate.getDate() === daysInCurrentMonth ? 1 : (currentDate.getDate() + 1);
+        let month = date === 1 ? (currentMonth + 1 > MONTH_MAP.length ? 1 : currentMonth + 1) : currentMonth;
+        let year = (currentMonth === MONTH_MAP.length && month === 1) ? currentYear + 1 : currentYear;
+        let nextDay = new Date(`${month}/${date}/${year}`)
+        let milliSecsRemaining = nextDay.getTime() - currentDate.getTime();
+        let timeout = setTimeout(() => {
+            setCurrentDate(new Date());
+            month !== currentMonth && setCurrentMonth(month);
+            year !== currentYear && setCurrentMonth(year);
+        }, milliSecsRemaining)
+
+        return () => clearTimeout(timeout);
+    }, [currentDate])
+
+    useEffect(() => {
         let newDate = new Date(`${currentMonth}/1/${currentYear}`)
         let date = newDate.getDate();
         let day = newDate.getDay()
@@ -41,26 +60,21 @@ const MyCalender:React.FC<indexProps> = () => {
             daysInCurrentMonth = MONTH_MAP[month - 1]?.leapYearDaysPerMonth || daysInCurrentMonth;
         }
         let prevMonth = month > 1 ? month - 1 : (MONTH_MAP.length);
-        let reachedTopRow = false;
-        let arr:Date[] = []
 
-        while (!reachedTopRow) {
-            let value = new Date(`${month}/${date}/${year}`)
-            arr.push(value)
+        let arr:Date[] = [new Date(`${month}/${date}/${year}`), 
+        ...Array(day).fill(0).map((val, index) => {
             date = date - 1;
-            if(date === 0) {
+            if(date <= 0) {
                 date = MONTH_MAP[prevMonth - 1].daysPerMonth;
                 if((year % 4 === 0) && prevMonth === LEAP_YEAR_MONTH) {
                     date = MONTH_MAP[prevMonth - 1]?.leapYearDaysPerMonth || date;
                 }
                 month = prevMonth;
                 year = (prevMonth === MONTH_MAP.length) ? year - 1 : year;
+                return new Date(`${month}/${date}/${year}`)
             }
-            day = day === 0 ? DAYS_MAP.length : day - 1;
-            if(day === DAYS_MAP.length && currentMonth !== month){
-                reachedTopRow = true;
-            }
-        }
+            return new Date(`${month}/${date}/${year}`);
+        })]
         let numberOfCellsRemaining = (CALENDER_ROWS * DAYS_MAP.length) - arr.length;
         month = currentMonth;
         year = newDate.getFullYear();
@@ -82,34 +96,7 @@ const MyCalender:React.FC<indexProps> = () => {
             return acc;
         },[])
         setCalenderPrams({array: fullCalenderArray})
-    }, [currentMonth, currentYear])
-
-    // let date = useMemo(() => currentDate.getDate(), [currentDate]);
-
-    // let day = useMemo(() => currentDate.getDay(), [currentDate]);
-
-    // let month = useMemo(() => currentDate.getMonth(), [currentDate]);
-
-    // let year = useMemo(() => currentDate.getFullYear(), [currentDate]);
-
-    // let curCalenderArr = useMemo(() => {
-    //     let arr = [];
-    //     let curDate = date;
-    //     let curMonth = month
-    //     let prevDaysOfWeek = Array(day).fill(0).map(val => {
-    //         curDate = curDate - 1;
-    //         if(curDate > 0) {
-    //             return curDate;
-    //         }else {
-    //             let prevMonth = curMonth > 0 ? curMonth - 1 : 11;
-    //             curDate = MONTH_MAP[prevMonth].daysPerMonth;
-    //             return curDate;
-    //         }
-    //     }).reverse()
-    //     arr.push([...prevDaysOfWeek, ...Array(7 - day).fill(0).map((v,i) => i + date)])
-    //     console.log(arr)
-    //     return arr;
-    // }, [currentDate])
+    }, [currentDate, currentMonth, currentYear])
 
     const updateCurrentMonth = (month: ChangeMonthProperty) => {
         switch (month) {
@@ -142,6 +129,11 @@ const MyCalender:React.FC<indexProps> = () => {
         }
     }
 
+    const onScrollCalender = (event: any) => {
+        console.log(event.target);
+        console.log(event)
+    }
+
     return <div className='flex-col font-style-sans calender'>
         <div className='flex-row content-between items-center'>
             <h2>
@@ -154,7 +146,7 @@ const MyCalender:React.FC<indexProps> = () => {
             </div>
         </div>
 
-        <table className='month-table'>
+        <table className='month-table' onScroll={onScrollCalender}>
             <tr>
                 {DAYS_MAP.map(day => (
                 <th className=''>

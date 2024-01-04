@@ -17,7 +17,7 @@ const MONTH_MAP:EachMonthMap[] = [
         leapYearDaysPerMonth: 29
     },
     {
-        name: 'MArch',
+        name: 'March',
         daysPerMonth: 31
     },
     {
