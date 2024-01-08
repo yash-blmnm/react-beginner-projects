@@ -1,22 +1,17 @@
+.tab-component {
+    border: 1px solid #dadada;
+    border-radius: 6px;
+    cursor: default;
+}
 .tab-content {
     padding: 0.25rem 1rem;
-    border: 1px solid #dadada;
 }
 
-.tab-component:hover .tab-content {
+.tab-component:hover {
     background-color: #626161;
 }
 
 .tab-content.active {
-    background-color: #7f7676;
-}
-
-.tab-content:first-child {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-
-.tab-content:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    background-color: #474646;
+        border-radius: 6px;
 }

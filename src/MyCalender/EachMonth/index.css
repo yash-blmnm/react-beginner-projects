@@ -1,0 +1,53 @@
+.day-list-heading {
+    text-align: right;
+    padding-right: 5%;
+    font-weight: 300;
+}
+
+.day-list-heading.sunday {
+    color: #aaa3a3;
+}
+
+table.month-table,
+table.month-table td {
+    border: 1px solid #dadada;
+    border-collapse: collapse;
+}
+
+table.month-table th,
+table.month-table td {
+    width: 14%;
+}
+
+table.month-table td {
+    height: 80px;
+}
+
+.day-list-item {
+    color: #5a5a5a;
+}
+
+.day-list-item.active {
+    background: #000;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.day-list-item.sunday {
+    background-color: #292828;
+}
+
+.day-list-item.sunday.active {
+    color: #aaa3a3;
+}
+
+.date-component {
+    padding: 2px 6px;
+}
+
+.date-component.active {
+    border: 1px solid #ff0000;
+    background: #cb3535;
+    color: #fff;
+    border-radius: 50%;
+}

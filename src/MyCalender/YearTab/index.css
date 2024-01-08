@@ -1,0 +1,46 @@
+.year-table {
+    display: grid;
+    flex-grow: 1;
+    grid-template-columns: 23% 23% 23% 23%;
+    grid-template-rows: 32% 32% 32%;
+    column-gap: 2%;
+    row-gap: 2%;
+}
+
+.month-item .month-table {
+    width: 90%;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* .days-heading {
+    gap: 2px;
+    margin-top: 12px;
+    font-size: 12px;
+    width: 100%;
+    color: #aaa3a3;
+} */
+
+.month-item table.month-table,
+.month-item table.month-table td {
+    border: none;
+}
+
+.month-item table.month-table td {
+    height: 20px;
+}
+
+.month-item .day-list-item {
+    background-color: transparent;
+}
+
+.month-name {
+    color: #ef3030;
+    font-size: 18px;
+}
+
+.day-item {
+    margin: 0.60rem 0;
+    font-weight: 300;
+    color: #aaa3a3;
+}

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { DAYS_MAP, MONTH_MAP } from '../constant';
+import { LEAP_YEAR_MONTH, MONTH_MAP } from '../constant';
+import EachMonth from '../EachMonth';
+import { getFullCalenderArray } from '../lib';
 
 type indexProps = {
     
@@ -8,9 +10,6 @@ type indexProps = {
 type calenderPramsType = {
     array?: Date[][]
 }
-
-const CALENDER_ROWS = 6;
-const LEAP_YEAR_MONTH = 2;
 
 enum ChangeMonthProperty {
     today = 'Today',
@@ -49,53 +48,10 @@ const MonthTab:React.FC<indexProps> = () => {
         return () => clearTimeout(timeout);
     }, [currentDate])
 
-    useEffect(() => {
-        let newDate = new Date(`${currentMonth}/1/${currentYear}`)
-        let date = newDate.getDate();
-        let day = newDate.getDay()
-        let year = newDate.getFullYear();
-        let month = currentMonth;
-        let daysInCurrentMonth = MONTH_MAP[month - 1].daysPerMonth;
-        if((year % 4 === 0) && currentMonth === LEAP_YEAR_MONTH) {
-            daysInCurrentMonth = MONTH_MAP[month - 1]?.leapYearDaysPerMonth || daysInCurrentMonth;
-        }
-        let prevMonth = month > 1 ? month - 1 : (MONTH_MAP.length);
+    
 
-        let arr:Date[] = [new Date(`${month}/${date}/${year}`), 
-        ...Array(day).fill(0).map((val, index) => {
-            date = date - 1;
-            if(date <= 0) {
-                date = MONTH_MAP[prevMonth - 1].daysPerMonth;
-                if((year % 4 === 0) && prevMonth === LEAP_YEAR_MONTH) {
-                    date = MONTH_MAP[prevMonth - 1]?.leapYearDaysPerMonth || date;
-                }
-                month = prevMonth;
-                year = (prevMonth === MONTH_MAP.length) ? year - 1 : year;
-                return new Date(`${month}/${date}/${year}`)
-            }
-            return new Date(`${month}/${date}/${year}`);
-        })]
-        let numberOfCellsRemaining = (CALENDER_ROWS * DAYS_MAP.length) - arr.length;
-        month = currentMonth;
-        year = newDate.getFullYear();
-        arr.reverse().push(...Array(numberOfCellsRemaining).fill(0).map((val, i) => {
-            let newVal = i + (arr.length ? arr[arr.length - 1].getDate() : 0) + 1;
-            if(newVal > daysInCurrentMonth) {
-                let nextMonth = month === MONTH_MAP.length ? 1 : month + 1;
-                let value = new Date(`${nextMonth}/${newVal - daysInCurrentMonth}/${month === MONTH_MAP.length ? year + 1 : year}`);
-                return value;
-            }
-            return new Date(`${month}/${newVal}/${currentYear}`);
-        }))
-        let fullCalenderArray = arr.reduce((acc:Date[][], val:Date) => {
-            if(!acc?.length || acc[acc?.length -1]?.length === DAYS_MAP.length) {
-                acc.push([val])
-            }else {
-                acc[acc?.length -1]?.push(val)
-            }
-            return acc;
-        },[])
-        setCalenderPrams({array: fullCalenderArray})
+    useEffect(() => {
+        setCalenderPrams({array: getFullCalenderArray(currentMonth, currentYear)})
     }, [currentDate, currentMonth, currentYear])
 
     const updateCurrentMonth = (month: ChangeMonthProperty) => {
@@ -136,43 +92,16 @@ const MonthTab:React.FC<indexProps> = () => {
     return <>
     <div className='flex-row content-between items-center'>
                 <h2>
-                    <strong>{`${MONTH_MAP[currentMonth - 1].name} ${currentYear}`}</strong>
+                    <strong>{MONTH_MAP[currentMonth - 1].name}</strong>
+                    <span className='font-weight-light'>{` ${currentYear}`}</span>
                 </h2>
                 <div className='flex-row'>
-                    <button className='month-shift-btn' onClick={() => updateCurrentMonth(ChangeMonthProperty.previous)}>{"<"}</button>
-                    <button className='month-shift-btn' onClick={() => updateCurrentMonth(ChangeMonthProperty.today)}>{"Today"}</button>
-                    <button className='month-shift-btn' onClick={() => updateCurrentMonth(ChangeMonthProperty.nextMonth)}>{">"}</button>
+                    <button className='shift-btn' onClick={() => updateCurrentMonth(ChangeMonthProperty.previous)}>{"<"}</button>
+                    <button className='shift-btn' onClick={() => updateCurrentMonth(ChangeMonthProperty.today)}>{"Today"}</button>
+                    <button className='shift-btn' onClick={() => updateCurrentMonth(ChangeMonthProperty.nextMonth)}>{">"}</button>
                 </div>
             </div>
-
-            <table className='month-table' onScroll={onScrollCalender}>
-                <tr>
-                    {DAYS_MAP.map(day => (
-                    <th className=''>
-                        <h4 className={`day-list-heading ${day === DAYS_MAP[0] ? 'sunday' : ''}`}>
-                            {`${day.charAt(0).toUpperCase()}${day.substring(1,3)}`}
-                        </h4>
-                    </th>
-                    ))}
-                </tr>
-                {calenderPrams?.array?.map((row:Date[], rindex:number) => (
-                    <tr key={rindex}>{row?.map((cell:Date, cindex:number) =>{
-                        return(
-                        <td key={cindex}>
-                            <div className={
-                                `flex-col height-full day-list-item ${cell.getMonth() === (currentMonth -1) ? 'active' : ''} ${cell.getDay() === 0 ? 'sunday' : ''}`
-                            }>
-                                <span className='self-end p-2'>
-                                    <span className={`date-component ${cell.toDateString() === currentDate.toDateString() ? 'active' : ''}`}>
-                                        {cell.getDate()}
-                                    </span>
-                                </span>
-                                <span>{cell.toDateString()}</span>
-                            </div>
-                        </td>
-                    )})}</tr>
-                ))}
-            </table>
+            <EachMonth monthArr={calenderPrams?.array} currentDate={currentDate} currentMonth={currentMonth}/>
     </>
 }
 export default MonthTab;

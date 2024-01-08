@@ -129,3 +129,6 @@ button:focus-visible {
 .text-justify {
   text-align: justify;
 }
+.font-weight-light {
+  font-weight: 300;
+}

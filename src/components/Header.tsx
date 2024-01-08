@@ -7,6 +7,7 @@ type HeaderProps = {
 
 const Heading = styled.h1`
     flex-grow: 0.9;
+    text-align: center;
 `
 
 const Header:React.FC<HeaderProps> = ({ projectName }) => {

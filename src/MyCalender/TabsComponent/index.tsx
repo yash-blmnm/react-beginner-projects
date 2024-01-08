@@ -2,7 +2,8 @@ import React from 'react';
 import './index.css'
 
 type indexProps = {
-    activeTab: CalenderTabs
+    activeTab: CalenderTabs,
+    setActiveTab: (activeTab: CalenderTabs) => void
 };
 
 export enum CalenderTabs {
@@ -12,12 +13,16 @@ export enum CalenderTabs {
     year = 'Year'
 }
 
-const TabComponent:React.FC<indexProps> = ({ activeTab }) => {
+const TabComponent:React.FC<indexProps> = ({ activeTab, setActiveTab }) => {
     
-    return <div className='flex-row tab-component content-center'>
-        {[CalenderTabs.day, CalenderTabs.week, CalenderTabs.month, CalenderTabs.year].map((tab,index) => (
-            <div key={index} className={`tab-content ${tab === activeTab ? 'active' : ''}`}>{tab}</div>
+    return <div className='flex-row content-center'>
+        <div className='flex-row tab-component'>{[CalenderTabs.day, CalenderTabs.week, CalenderTabs.month, CalenderTabs.year].map((tab,index) => (
+            <div 
+                key={index} 
+                className={`tab-content ${tab === activeTab ? 'active' : ''}`} 
+                onClick={() => tab !== activeTab && setActiveTab(tab)}>{tab}</div>
         ))}
+        </div>
     </div>
 }
 export default TabComponent;

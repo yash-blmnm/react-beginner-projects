@@ -62,7 +62,12 @@ const DAYS_MAP = [
     'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
 ]
 
+const CALENDER_ROWS = 6;
+const LEAP_YEAR_MONTH = 2;
+
 export {
     MONTH_MAP,
-    DAYS_MAP
+    DAYS_MAP,
+    CALENDER_ROWS,
+    LEAP_YEAR_MONTH
 }
