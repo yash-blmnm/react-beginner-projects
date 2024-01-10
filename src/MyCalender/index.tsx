@@ -4,6 +4,8 @@ import Header from '../components/Header';
 import MonthTab from './MonthTab';
 import TabComponent, { CalenderTabs } from './TabsComponent';
 import YearTab from './YearTab';
+import { CalenderContextProvider } from './context';
+import CalenderBody from './CalenderBody';
 
 const MyCalender:React.FC = () => {
     const [activeTab, setActiveTab] = useState(CalenderTabs.month);
@@ -25,9 +27,9 @@ const MyCalender:React.FC = () => {
     <Header projectName={"My Calender"} />
     <section className="main-section">
         <div className='flex-col font-style-sans calender'>
-            <TabComponent activeTab={activeTab} setActiveTab={setActiveTab} />
-            {tabResult}
-            {/* <MonthTab /> */}
+            <CalenderContextProvider>
+                <CalenderBody />
+            </CalenderContextProvider>
         </div>
     </section>
     </>
