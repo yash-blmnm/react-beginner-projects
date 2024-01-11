@@ -65,6 +65,13 @@ const DAYS_MAP = [
 const CALENDER_ROWS = 6;
 const LEAP_YEAR_MONTH = 2;
 
+export enum ChangeProperty {
+    today = 'Today',
+    previous = 'Previous',
+    nextMonth = 'Next'
+}
+
+
 export {
     MONTH_MAP,
     DAYS_MAP,

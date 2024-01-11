@@ -60,9 +60,8 @@ const YearTab:React.FC<indexProps> = () => {
         </div>
     </div>
     <div className='year-table' >
-        {MONTH_MAP.map((month, i) => <div className='month-item'>
+        {MONTH_MAP.map((month, i) => <div key={i} className='month-item'>
             <div className='month-name'>{month.name}</div>
-            {/* <div className='flex-row days-heading'>{DAYS_MAP.map(day => <div className='day-item'>{day.charAt(0).toUpperCase()}</div>)}</div> */}
             {monthArray ?
                 <EachMonth key={i} monthArr={monthArray[i]} currentDate={new Date()} currentMonth={i+1} isYearTab={true} />
             : ''}

@@ -3,7 +3,7 @@ import './index.css'
 
 type indexProps = {
     activeTab: CalenderTabs,
-    setActiveTab: (activeTab: CalenderTabs) => void
+    setActiveTab: (tab: CalenderTabs) => void
 };
 
 export enum CalenderTabs {

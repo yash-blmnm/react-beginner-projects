@@ -13,8 +13,8 @@ const EachMonth:React.FC<indexProps> = ({monthArr, currentDate, currentMonth, is
     return <>
     <table className='month-table'>
         <tr>
-            {DAYS_MAP.map(day => (
-            <th className=''>
+            {DAYS_MAP.map((day, index) => (
+            <th key={index} className=''>
                 {isYearTab ? 
                     <div className='day-item'>{day.charAt(0).toUpperCase()}</div> 
                     : 

@@ -1,7 +1,7 @@
 .year-table {
     display: grid;
     flex-grow: 1;
-    grid-template-columns: 24% 24% 24% 24%;
+    grid-template-columns: 23.5% 23.5% 23.5% 23.5%;
     grid-template-rows: 32% 32% 32%;
     column-gap: 2%;
     row-gap: 1%;
@@ -35,6 +35,7 @@
 }
 
 .month-name {
+    margin-left: 0.75rem;
     color: #ef3030;
     font-size: 18px;
 }

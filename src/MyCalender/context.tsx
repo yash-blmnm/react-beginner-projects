@@ -10,10 +10,17 @@ type actionType = {
   value: any,
 };
 
-const reducer = (action: actionType, state: any) => {
+const reducer = (state: any, action: actionType) => {
   let { type, value } = action;
   console.log(type, value);
-  switch (action) {
+  switch (type) {
+    case 'updateActionTab': {
+      return {...state, activeTab: value};
+      break;
+    }
+    case 'updateCalenderState': {
+      return {...state, ...value};
+    }
     default:
       return state;
   }
@@ -30,7 +37,7 @@ const getInitialState = () => {
   };
 };
 
-export const CalenderContext = createContext({});
+export const CalenderContext = createContext();
 
 export const CalenderContextProvider: React.FC<{ children: ReactElement }> = ({
   children,
