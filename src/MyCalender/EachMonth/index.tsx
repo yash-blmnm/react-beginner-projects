@@ -31,7 +31,7 @@ const EachMonth:React.FC<indexProps> = ({monthArr, currentDate, currentMonth, is
             <td key={cindex}>
                 {isYearTab ? 
                     <div className={
-                        `day-list-item ${cell.getMonth() === (currentMonth -1) ? 'active' : ''} ${cell.getDay() === 0 ? 'sunday' : ''}`
+                        `flex-row content-center day-list-item ${cell.getMonth() === (currentMonth -1) ? 'active' : ''} ${cell.getDay() === 0 ? 'sunday' : ''}`
                     }>
                         <span className={`date-component ${cell.toDateString() === currentDate.toDateString() ? 'active' : ''}`}>
                             {cell.getDate()}
@@ -42,11 +42,11 @@ const EachMonth:React.FC<indexProps> = ({monthArr, currentDate, currentMonth, is
                         `flex-col height-full day-list-item ${cell.getMonth() === (currentMonth -1) ? 'active' : ''} ${cell.getDay() === 0 ? 'sunday' : ''}`
                     }>
                         <span className='self-end p-2'>
-                            <span className={`date-component ${cell.toDateString() === currentDate.toDateString() ? 'active' : ''}`}>
-                                {cell.getDate()}
+                            <span className={`date-component month ${cell.toDateString() === currentDate.toDateString() ? 'active' : ''}`}>
+                                <span>{cell.getDate()}</span>
                             </span>
                         </span>
-                        {/* <span>{cell.toDateString()}</span> */}
+                        <span>{cell.toDateString()}</span>
                     </div>
                 }
             </td>

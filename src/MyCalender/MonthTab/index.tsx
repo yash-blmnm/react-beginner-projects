@@ -55,8 +55,7 @@ const MonthTab:React.FC<indexProps> = () => {
 
 
     return <>
-    
-    <EachMonth monthArr={calenderPrams?.array} currentDate={currentDate} currentMonth={currentMonth}/>
+        <EachMonth monthArr={calenderPrams?.array} currentDate={currentDate} currentMonth={currentMonth}/>
     </>
 }
 export default MonthTab;

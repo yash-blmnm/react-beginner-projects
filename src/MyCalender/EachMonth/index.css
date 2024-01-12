@@ -42,12 +42,25 @@ table.month-table td {
 }
 
 .date-component {
-    padding: 2px 6px;
+    /* padding: 2px 6px; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .date-component.month {
+        font-size: 14px;
 }
 
 .date-component.active {
+    height: 18px;
+        width: 18px;
     border: 1px solid #ff0000;
     background: #cb3535;
     color: #fff;
     border-radius: 50%;
+}
+.date-component.month.active {
+    height: 24px;
+    width: 24px;
 }

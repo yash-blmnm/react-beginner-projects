@@ -37,7 +37,7 @@ const getInitialState = () => {
   };
 };
 
-export const CalenderContext = createContext();
+export const CalenderContext = createContext({});
 
 export const CalenderContextProvider: React.FC<{ children: ReactElement }> = ({
   children,
