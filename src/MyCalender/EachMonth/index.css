@@ -55,9 +55,10 @@ table.month-table td {
 .date-component.active {
     height: 18px;
         width: 18px;
-    border: 1px solid #ff0000;
-    background: #cb3535;
-    color: #fff;
+    border: 1px solid #fa5151;
+        background: #fa5151;
+        color: #161414;
+        font-weight: 600;
     border-radius: 50%;
 }
 .date-component.month.active {

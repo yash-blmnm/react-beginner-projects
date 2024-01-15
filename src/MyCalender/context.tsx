@@ -1,5 +1,5 @@
 import {
-  ReactElement,
+  ReactNode,
   createContext,
   useReducer,
 } from "react";
@@ -39,7 +39,7 @@ const getInitialState = () => {
 
 export const CalenderContext = createContext({});
 
-export const CalenderContextProvider: React.FC<{ children: ReactElement }> = ({
+export const CalenderContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [calenderState, dispatch] = useReducer(reducer, getInitialState());

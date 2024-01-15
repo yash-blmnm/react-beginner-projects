@@ -1,7 +1,13 @@
+import { ReactNode } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function StaticExample() {
+type indexProps = {
+    // children: React.HTML
+    children: ReactNode
+};
+
+const ModalComponent:React.FC<indexProps> = ({ children }) => {
   return (
       <Modal.Dialog>
         <Modal.Header closeButton>
@@ -9,7 +15,7 @@ function StaticExample() {
         </Modal.Header>
 
         <Modal.Body>
-          <p>Modal body text goes here.</p>
+          {children}
         </Modal.Body>
 
         <Modal.Footer>
@@ -20,4 +26,4 @@ function StaticExample() {
   );
 }
 
-export default StaticExample;
+export default ModalComponent;

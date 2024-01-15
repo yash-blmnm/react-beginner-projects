@@ -29,7 +29,7 @@ function App() {
       </header>
       <main>
         <h3>Welcome to my React Beginner Projects!</h3>
-        <ul className='flex-row gap-4 projects-list'>
+        <ul className='flex-row gap-4 projects-list p-0'>
           {PROJECTS.map((project) =>
           <li className='projects-list-item'>
             <a href={project.link}>

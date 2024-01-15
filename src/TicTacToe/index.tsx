@@ -1,6 +1,7 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Game from './Game'
 import Header from '../components/Header';
+import PlayerInfo from './PlayerInfo';
 
 const PLAYER_1 = 'Player1';
 const PLAYER_2 = 'Player2';
@@ -18,11 +19,17 @@ function TicTacToe() {
 
   const [gameStatus, setGameStatus] = useState<Status>(Status.play);
 
+  const [ gameFlag, setGameFlag ] = useState(false);
+
   const symbol = useMemo(() => player === PLAYER_1 ? 'x' : 'o',[player]);
 
   const resetGame = useCallback((newFirstPlayer = player) => {
     setGameStatus(Status.start);
     setPlayer(newFirstPlayer)
+  }, [])
+
+  useEffect(() => {
+    
   }, [])
 
   const statusDescription = useMemo(() => {
@@ -44,7 +51,8 @@ function TicTacToe() {
 
   return (
     <>
-      <Header projectName={"Tic Tac Toe"} />
+    <Header projectName={"Tic Tac Toe"} />
+      {!gameFlag ? <PlayerInfo /> :
       <section className="main-section">
         <h4>Player : {player} </h4>
         <Game 
@@ -56,6 +64,7 @@ function TicTacToe() {
         {statusDescription}
         {gameStatus === Status.none ? <></> : ''}
       </section>
+      }
     </>
   )
 }

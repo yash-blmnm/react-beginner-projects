@@ -6,6 +6,9 @@
   font-family: sans-serif;
 }
 
+main {
+  margin: 1rem 3rem;
+}
 .logo {
   height: 6em;
   padding: 1.5em;

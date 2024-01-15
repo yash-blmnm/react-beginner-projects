@@ -49,16 +49,7 @@ const YearTab:React.FC<indexProps> = () => {
         }
     }
     
-    return <><div className='flex-row content-between items-center'>
-        <h2>
-            <span className='font-weight-light'>{` ${currentYear}`}</span>
-        </h2>
-        <div className='flex-row'>
-            <button className='shift-btn' onClick={() => updateCurrentYear(ChangeMonthProperty.previous)}>{"<"}</button>
-            <button className='shift-btn' onClick={() => updateCurrentYear(ChangeMonthProperty.today)}>{"Today"}</button>
-            <button className='shift-btn' onClick={() => updateCurrentYear(ChangeMonthProperty.nextMonth)}>{">"}</button>
-        </div>
-    </div>
+    return <>
     <div className='year-table' >
         {MONTH_MAP.map((month, i) => <div key={i} className='month-item'>
             <div className='month-name'>{month.name}</div>
