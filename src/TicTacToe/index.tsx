@@ -52,8 +52,9 @@ function TicTacToe() {
   return (
     <>
     <Header projectName={"Tic Tac Toe"} />
+    <section className="flex-row content-center main-section">
       {!gameFlag ? <PlayerInfo /> :
-      <section className="main-section">
+      <div className='flex-col gap-4'>
         <h4>Player : {player} </h4>
         <Game 
           symbol={symbol}
@@ -61,10 +62,11 @@ function TicTacToe() {
           changePlayer={() => setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1)}
           updateGameStatus={(status: Status) => setGameStatus(status)}
         />
-        {statusDescription}
-        {gameStatus === Status.none ? <></> : ''}
-      </section>
+        <div>{statusDescription}</div>
+        <div>{gameStatus === Status.none ? <></> : ''}</div>
+      </div>
       }
+    </section>
     </>
   )
 }

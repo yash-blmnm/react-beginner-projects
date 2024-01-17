@@ -122,6 +122,9 @@ button:focus-visible {
 .p-2 {
   padding: 0.5rem;
 }
+.my-4 {
+  margin: 1rem 0;
+}
 .font-style-sans {
   font-family: sans-serif;
 }
