@@ -15,8 +15,8 @@ const TimeFormatToggle:React.FC<indexProps> = ({ timeFormat, changeFormat }) => 
     
     return <div className='flex-row time-format-toggle'>
         {[TimeFormat.twentyFour, TimeFormat.twelve]
-        .map(format => 
-            <button className={`time-format ${format === timeFormat ? 'active' : ''}`} onClick={() => changeFormat(format)}>{format}</button>
+        .map((format, index) => 
+            <button key={index} className={`time-format ${format === timeFormat ? 'active' : ''}`} onClick={() => changeFormat(format)}>{format}</button>
         )}
     </div>
 }
