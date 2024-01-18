@@ -20,45 +20,45 @@ type TimeObjectProps = {
 const TimeComponent:React.FC<indexProps> = ({ timeFormat, currentDate, changeMeridiam, changeDate }) => {
 	const [timeNow, setTimeNow] = useState<TimeObjectProps>(() => {
 		let date = new Date();
-		// changeDate(`${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`)
-		changeDate(date.toDateString())
+		let hours = date.getHours();
+		hours = (timeFormat === TimeFormat.twelve && hours > 12) ? (hours - 12) : hours
 		return {
-			hours: date.getHours(),
+			hours,
 			mins: date.getMinutes(),
 			secs: date.getSeconds()
 		};
 	});
 
-	useEffect(() => {
-		const timeout = setTimeout(() => {
-			let date = new Date();
-			let hours = date.getHours(); 
-			// let newCurrentDate = `${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`
-			let newCurrentDate = date.toDateString();
-			setTimeNow({
-				...timeNow,
-				hours: ((timeFormat === TimeFormat.twelve && hours > 12) ? hours - 12 : hours),
-				mins: date.getMinutes(),
-				secs: date.getSeconds(),
-			});
-			if(currentDate !== newCurrentDate) {
-				// changeDate(`${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`);
-				changeDate(newCurrentDate)
-			}
-		}, 1000);
-		return () => clearTimeout(timeout);
-	}, [timeNow]);
+	// useEffect(() => {
+	// 	const timeout = setTimeout(() => {
+	// 		let date = new Date();
+	// 		let hours = date.getHours(); 
+	// 		// let newCurrentDate = `${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`
+	// 		let newCurrentDate = date.toDateString();
+	// 		setTimeNow({
+	// 			...timeNow,
+	// 			hours: ((timeFormat === TimeFormat.twelve && hours > 12) ? hours - 12 : hours),
+	// 			mins: date.getMinutes(),
+	// 			secs: date.getSeconds(),
+	// 		});
+	// 		if(currentDate !== newCurrentDate) {
+	// 			// changeDate(`${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`);
+	// 			changeDate(newCurrentDate)
+	// 		}
+	// 	}, 1000);
+	// 	return () => clearTimeout(timeout);
+	// }, [timeNow]);
 
-	useEffect(() => {
-		let date = new Date();
-		if(timeFormat === TimeFormat.twentyFour) {
-			setTimeNow({...timeNow, hours: date.getHours()})
-		}else {
-			let hours = date.getHours();
-			setTimeNow({...timeNow, hours: (hours > 12 ? (hours - 12) : hours)})
-			changeMeridiam((hours > 12 ? MeridiamValues.pm : MeridiamValues.am))
-		}
-	}, [timeFormat])
+	// useEffect(() => {
+	// 	let date = new Date();
+	// 	if(timeFormat === TimeFormat.twentyFour) {
+	// 		setTimeNow({...timeNow, hours: date.getHours()})
+	// 	}else {
+	// 		let hours = date.getHours();
+	// 		setTimeNow({...timeNow, hours: (hours > 12 ? (hours - 12) : hours)})
+	// 		changeMeridiam((hours > 12 ? MeridiamValues.pm : MeridiamValues.am))
+	// 	}
+	// }, [timeFormat])
 
 	return <>
 		{Object.values(timeNow).map((timeComponent:number, index1:number) => {

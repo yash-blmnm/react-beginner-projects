@@ -11,7 +11,10 @@ export default function DigitalClock() {
 
   const [meridiam, setMeridiam] = useState<MeridiamValues>()
 
-  const [currentDate, setCurrentDate] = useState<string>();
+  const [currentDate, setCurrentDate] = useState<string>(() => {
+    let date = new Date();
+    return date.toDateString();
+  });
 
   return (
     <>
